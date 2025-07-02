@@ -234,7 +234,7 @@
       const nama = document.getElementById('nama').value;
       const nohp = document.getElementById('nohp').value;
       if (!nama || !nohp) return alert('Isi nama dan nomor HP.');
-      let pesan = `Nama: ${nama}\nNomor HP: ${nohp}\nDeskripsi Barang:`;
+      let pesan = `Pesanan atas\nNama: ${nama}\nNomor HP: ${nohp}\nDeskripsi Barang:`;
       keranjang.forEach(k => pesan += `\n- ${k.deskripsi}: ${k.qty}`);
       const waUrl = `https://wa.me/6285148035051?text=${encodeURIComponent(pesan)}`;
       window.open(waUrl, '_blank');
