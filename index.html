@@ -6,11 +6,14 @@
   <title>Alfa Shop - Belanja Ibu Hemat</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
     }
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #fffaf7;
-      width: 100%;
+      padding: 30px;
+      width: 100%; 
       margin: auto;
       color: #444;
     }
@@ -63,7 +66,6 @@
       background-color: white;
       border-radius: 8px;
       font-size: 14px;
-      min-width: 400px;
     }
     th, td {
       border: 1px solid #ccc;
@@ -96,26 +98,38 @@
       padding: 6px 10px;
       border-radius: 6px;
       cursor: pointer;
+      margin-top: -15px;
     }
-    @media (max-width: 480px) {
-      body {
-        padding: 15px;
-      }
-      .form-row {
-        flex-direction: column;
-        gap: 0;
-      }
-      .form-row > div {
-        width: 100%;
-      }
-      table {
-        font-size: 13px;
-      }
-      button {
-        font-size: 14px;
-        padding: 12px;
-      }
-    }
+    @media (max-width: 320px) {
+  table thead {
+    display: none;
+  }
+  table, tbody, tr, td {
+    display: block;
+    width: 100%;
+  }
+  tr {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+  }
+  td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: 45%;
+    text-align: left;
+    font-weight: bold;
+  }
+}
   </style>
 </head>
 <body>
@@ -130,14 +144,14 @@
   <input type="text" id="nohp" placeholder="Contoh: 081234567890">
 
   <div class="form-row" style="display: flex; gap: 10px; align-items: flex-start;">
-  <div style="flex: 8;">
+  <div style="flex: 7;">
     <label>Deskripsi Barang</label>
     <div class="autocomplete-box">
       <input type="text" id="deskripsi" oninput="showAutocomplete()" placeholder="Ketik nama barang...">
       <div id="suggestions" class="autocomplete-list" style="display:none;"></div>
     </div>
   </div>
-  <div style="flex: 2;">
+  <div style="flex: 3;">
     <label>Qty</label>
     <input type="number" id="qty" min="1" placeholder="Jumlah">
   </div>
@@ -151,7 +165,13 @@
     <thead>
       <tr><th>Deskripsi</th><th>Qty</th><th>Aksi</th></tr>
     </thead>
-    <tbody id="keranjang"></tbody>
+    <tbody id="keranjang">
+  <tr>
+    <td data-label="Deskripsi">...</td>
+    <td data-label="Qty">...</td>
+    <td data-label="Aksi">...</td>
+  </tr>
+</tbody>
   </table>
 </div>
 
@@ -4609,7 +4629,7 @@
         tbody.innerHTML += `<tr>
           <td>${item.deskripsi}</td>
           <td>${item.qty}</td>
-          <td style="text-align: center; vertical-align: middle; line-height: 1;"><button class='hapus-btn' onclick='hapusItem(${index})'>Hapus</button></td>
+          <td style="text-align: center; vertical-align: middle;"><button class='hapus-btn' onclick='hapusItem(${index})'>Hapus</button></td>
         </tr>`;
       });
     }
