@@ -233,7 +233,7 @@
     function kirimKeWhatsapp() {
       const nama = document.getElementById('nama').value;
       const alamat = document.getElementById('alamat').value;
-      if (!nama || !nohp) return alert('Isi nama dan nomor HP.');
+      if (!nama || !nohp) return alert('Isi nama dan alamat.');
       let pesan = `Pesanan atas\nNama: ${nama}\nAlamat: ${alamat}\nDeskripsi Barang:`;
       keranjang.forEach(k => pesan += `\n- ${k.deskripsi}: ${k.qty}`);
       const waUrl = `https://wa.me/6285148035051?text=${encodeURIComponent(pesan)}`;
